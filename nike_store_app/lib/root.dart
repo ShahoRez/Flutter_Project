@@ -32,6 +32,12 @@ class _RootScreenState extends State<RootScreen> {
     if (currentSelectedTab.canPop()) {
       currentSelectedTab.pop();
       return false;
+    } else if (_history.isNotEmpty) {
+      setState(() {
+        selectedTabIndex = _history.last;
+        _history.removeLast();
+      });
+      return false;
     }
 
     return true;
